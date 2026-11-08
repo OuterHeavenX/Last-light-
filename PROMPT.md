@@ -144,3 +144,13 @@ The Threshold uses 1.15 × the difficulty's lit radius and up to two shortcuts; 
 Show chamber name and guidance, short pickup/damage labels, explicit key status, and a steady low-coin warning at 8 coins or fewer. Freeze labels while paused and respect reduced motion. At widths up to 600px, render an 11 × 11 tile view following the player and clamped to the map, with 44px sticky direction buttons. On wider screens show the whole map. Do not erase explored geometry on resize.
 
 Verify all nine difficulty/chamber combinations over 900 generated mazes, including safe detours, unique and reachable items, gate exclusion, feedback, warning state and camera sizing alongside the original economy and input checks.
+
+## 14. Relics and run recap (supersedes the original scoring formula)
+
+Place one unique, reachable violet four-point star relic per chamber, excluding spawn, gate and existing items. Prefer the tile that maximizes extra movement beyond the shortest spawn-key-gate route. A relic is optional, gives no spendable coins, and requires no additional input to collect. Award 25 points only when it is carried through that chamber's unlocked exit. Keep banked points on later death; discard unbanked relics. Reset all relic state on a new run.
+
+Final score = coins + 20 × cleared chambers + 25 × secured relics. Store best scores under the separate `last-light-best-relics-v1-<difficulty>` keys; leave previous score data intact. Explain this scoring change in the visible rules and README.
+
+On victory/defeat, provide a recap section with score breakdown, light coins spent, actual spike losses (clamped by remaining purse), coins picked up, and successful steps. Snapshot each chamber on exit or death, including explored geometry and route segments. Provide a labeled native chamber selector and render maps with unknown geometry hidden, gold route lines, discovered landmarks, and a final-position marker. Keep snapshots independent of later generated mazes. Freeze all metrics while paused. Clear the recap on new run. Use a keyboard-accessible button from the end overlay to focus the recap heading.
+
+Verify one non-overlapping detour relic in each of 900 generated mazes, no scoring at pickup or locked gate, one award per escaped chamber, death and victory arithmetic, retained banked points, metric accounting, immutable snapshots, selector behavior and mobile layout. No online features, accounts, or new runtime dependencies.

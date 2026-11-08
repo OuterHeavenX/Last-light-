@@ -54,3 +54,13 @@ The suite checks 900 random mazes across all difficulties and chambers, includin
 - Pickup text, a persistent key indicator, and a steady warning at 8 coins or fewer clarify the economy.
 - Mobile uses an 11 × 11 tile camera that follows the player, with sticky 44px direction buttons. Desktop retains the full board.
 - Existing scores remain saved; the new chamber layouts change the challenge, so older and newer scores are not strictly comparable.
+
+## Relics and run recap
+
+One optional violet star relic appears in each chamber, placed to maximize the extra walking beyond the shortest spawn → key → exit journey. Pick it up and carry it through that chamber’s unlocked gate to secure **25 bonus points**. Relics never add spendable coins or unlock gates. A relic held at death is lost; relics already secured in earlier chambers still score.
+
+Final score is **remaining coins + 20 × cleared chambers + 25 × secured relics**. This scoring version uses separate per-difficulty best-score keys (`last-light-best-relics-v1-*`). Older scores remain in storage, but are not displayed or compared against relic scores.
+
+At victory or defeat, choose **View run recap**. Review coins spent on light, actual coins lost to spikes, coins collected, and successful movement steps. Select any visited chamber to see its explored geometry, route, final position and discovered landmarks. Unknown tiles remain hidden. The recap is available until the next run and is not saved across reloads. Costs and labels freeze while paused; new runs reset all metrics.
+
+The browser suite covers relic detours in 900 mazes, locked-gate behavior, banking exactly once, unbanked relic loss, three-relic victory, cost counters, map snapshots, reset behavior and recap layouts on desktop and mobile.
