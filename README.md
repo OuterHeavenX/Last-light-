@@ -26,13 +26,13 @@ The included workflow publishes the repository root. No secrets, server, databas
 
 ## Design notes
 
-Mazes are random and connected, with the gate at a furthest reachable tile. Visibility is circular and can reveal nearby geometry across walls. Remembered geometry is dim; remembered items are hidden. There are no enemies, raycast shadows, daily seeds, or online scores. Best scores are local to the browser and difficulty. The canvas is visually navigated and does not provide a complete screen-reader mode.
+Mazes are random and connected, with the gate at a furthest reachable non-shortcut tile. Visibility is circular and can reveal nearby geometry across walls. Remembered geometry is dim; remembered items are hidden. There are no enemies, raycast shadows, daily seeds, or online scores. Best scores are local to the browser and difficulty. The canvas is visually navigated and does not provide a complete screen-reader mode.
 
 ## Verification
 
 Run `node tests/verify.cjs` with Node.js, Playwright, and Chromium installed. Set `CHROMIUM_PATH` if Chromium is not at `/usr/bin/chromium`. These are development-only tools; playing the game needs no dependencies.
 
-The suite checks 300 random mazes across all difficulties, unique and reachable item placement, pickups, repeated spike damage, locked gates, chamber bonuses, fractional lantern time, pause, victory/defeat, separate best scores, and storage write failures. Chromium checks cover keyboard input, button focus, direction pad, swipes, focus-loss pause, and desktop/mobile layouts. Screenshots are included. Testing uses a local HTTP server; this environment's browser policy blocks direct file URLs. Audible quality and physical-device touch have not been manually verified.
+The suite checks 900 random mazes across all difficulties and chambers, including a spike-free detour of at least twelve steps for every shortcut, unique and reachable item placement, pickups, repeated spike damage, locked gates, chamber bonuses, fractional lantern time, pause, victory/defeat, separate best scores, and storage write failures. Chromium checks cover keyboard input, button focus, direction pad, swipes, focus-loss pause, and desktop/mobile layouts. The test run generates desktop and mobile screenshots. Testing uses a local HTTP server; this environment's browser policy blocks direct file URLs. Audible quality and physical-device touch have not been manually verified.
 
 ## Changes from the supplied prototype
 
@@ -42,3 +42,15 @@ The suite checks 300 random mazes across all difficulties, unique and reachable 
 - Pending swipes clear on pause, game end, and chamber transitions.
 - Player animation stops while paused; audio resume failures are handled.
 - Included repeatable browser and gameplay tests.
+
+
+## Chamber update
+
+- **The Threshold:** 15% wider lantern, up to two spiked shortcuts.
+- **The Crossroads:** normal lantern, up to four spiked shortcuts.
+- **The Last Passage:** 15% narrower lantern, up to two spiked shortcuts.
+- Shortcuts open loops in the maze. Each costs one spike entry (5 coins), with a longer spike-free detour available between its endpoints. Other parts of a route can still contain spikes.
+- Spike counts are capped by difficulty (4 / 7 / 10). Extra spikes are omitted if they would block protected detours. Coins, key, and gate remain distinct and reachable.
+- Pickup text, a persistent key indicator, and a steady warning at 8 coins or fewer clarify the economy.
+- Mobile uses an 11 × 11 tile camera that follows the player, with sticky 44px direction buttons. Desktop retains the full board.
+- Existing scores remain saved; the new chamber layouts change the challenge, so older and newer scores are not strictly comparable.

@@ -1,6 +1,6 @@
 # Last Light — complete build prompt
 
-Build a polished, playable browser game called **Last Light**. Deliver a self-contained `index.html` with embedded CSS and vanilla JavaScript, a README, and a GitHub Pages deployment workflow. The HTML must run directly from disk and from a static host without a build process, account, server, API keys, external assets, or network requests. Treat the following as the implementation specification.
+Build a polished, playable browser game called **Last Light**. Deliver a self-contained `index.html` with embedded CSS and vanilla JavaScript, a README, and a GitHub Pages deployment workflow. The HTML must run directly from disk and from a static host without a build process, account, server, API keys, external assets, or network requests. Treat the following as the implementation specification, with the chamber update below taking precedence where it changes the original rules.
 
 ## 1. Concept and player experience
 
@@ -133,3 +133,14 @@ Use requestAnimationFrame, accumulated elapsed time, and a shared movement coold
 ## 12. GitHub delivery
 
 Provide a repository-ready folder with `index.html`, `PROMPT.md`, `README.md`, and `.github/workflows/pages.yml`. The workflow deploys the repository root on pushes to `main` and manual dispatch using GitHub Pages artifact upload/deploy actions with minimal permissions. Explain that the repository owner must enable Settings → Pages → Source → GitHub Actions. No build command or environment variables are needed. Do not claim the site is published until an actual deployment succeeds.
+
+
+## 13. Chamber variety update (supersedes conflicting original requirements)
+
+Keep the 23 × 15 connected DFS foundation, then open spiked shortcuts between existing corridors. Each shortcut must bypass a spike-free detour of at least twelve orthogonal steps. Preserve these detours when placing other spikes. Exclude shortcut tiles from key, coin, spawn and gate placement. Choose a furthest reachable non-shortcut tile for the gate.
+
+The Threshold uses 1.15 × the difficulty's lit radius and up to two shortcuts; The Crossroads uses 1.0 × and up to four; The Last Passage uses 0.85 × and up to two. Difficulty trap counts are now maxima; omit extra traps if protected detours leave insufficient space. Darkness remains 1.45 tiles. Existing economy, scoring, partial burn, pause and progression rules remain unchanged.
+
+Show chamber name and guidance, short pickup/damage labels, explicit key status, and a steady low-coin warning at 8 coins or fewer. Freeze labels while paused and respect reduced motion. At widths up to 600px, render an 11 × 11 tile view following the player and clamped to the map, with 44px sticky direction buttons. On wider screens show the whole map. Do not erase explored geometry on resize.
+
+Verify all nine difficulty/chamber combinations over 900 generated mazes, including safe detours, unique and reachable items, gate exclusion, feedback, warning state and camera sizing alongside the original economy and input checks.
